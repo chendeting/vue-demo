@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+  <style>
+    .class-a{
+      font-size: 30px;
+    }
+    .class-b{
+      color: red
+    }
+   .box{
+
+     height: 100px;
+     width: 100px;
+     border: 1px solid #ccc;
+     transition:all 0.3s ease-in;
+   }
+  </style>
+</head>
+<body>
+<div id="app">
+{{span}}  <br>
+我是B：{{b}} <br>
+
+{{money | currency}}
+<a :href="link">{{link}}</a>
+<button @click="changeLink">改变</button>
+<input type="text" v-model = "firstName">
+<input type="text" v-model = "lastName">
+
+{{fullName}}
+<input type="text" v-model = "fullName">
+<ul>
+  <li v-for="p in todos">
+    {{p.p}}
+  </li>
+  <li>{{sum}}</li>
+</ul>
+
+<!-- <div class="static" :class="{ 'class-a': isA, 'class-b': h  }">哈哈</div> -->
+<div class="static" :class="[isHot?A:'',B]">哈哈</div>
+
+<div class="box" :style="{transform:'translateX('+ active + 'px)'}">多少</div>
+
+<button @click="changeactive">跑啊跑</button>
+<div :style="[styleObjectA]">屌丝知多少</div>
+</div>
+</body>
+<script>
+var data = {
+   a:1,
+   money:1024,
+   link:'',
+   firstName: 'Foo',
+   lastName: 'Bar',
+   isA:true,
+   isHot:true,
+   isB:false,
+   A:'class-a',
+   B:'class-b',
+   activeColor:'pink',
+   styleObjectA:{color:'red'},
+   fontSize:"20",
+   hot:'hot1',
+   active:0,
+   todos:[{p:120},{p:11},{p:123}],
+   span:'<span style="color:red">喜洋洋</span>'}
+
+var vm = new Vue({
+   el:'#app',
+   data:data,
+   computed:{
+     b:function(){
+        return this.a + 1
+     },
+     h:function(){
+       return this.hot == "hot"
+     },
+     fullName:{
+        get: function () {
+          return this.firstName + ' ' + this.lastName
+        },
+        // setter
+        set: function (newValue) {
+          var names = newValue.split(' ')
+          this.firstName = names[0]
+          this.lastName = names[names.length - 1]
+        }
+     },
+     sum:function(){
+        var sum = 0;
+        this.todos.forEach(function(val,index){
+            sum += val.p;
+        })
+
+        return sum
+     }
+   },
+   methods:{
+    changeLink:function(){
+      this.link = 'www.baidu.com'
+    },
+    changeactive:function(){
+      this.active += 30
+    }
+   },
+   created:function(){
+      console.log("我被创建了");
+    /*  setTimeout(function(){
+        this.a = 4;
+      }.bind(this),1000)*/
+   },
+   beforeCompile:function(){
+     console.log("要编译模板了")
+   },
+   compiled:function(){
+     console.log("编译模板完成")
+   },
+   ready:function(){
+    console.log("OK了")
+   },
+   destroyed:function(){
+      console.log("被销毁了")
+   }
+
+});
+
+/*vm.$watch('firstName', function (val) {
+  this.fullName = val + ' ' + this.lastName
+})
+
+vm.$watch('lastName', function (val) {
+  this.fullName = this.firstName + ' ' + val
+})*/
+
+//Vue.set(data,'b',2)
+</script>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+  <link rel="stylesheet"  href="css/common.css">
+  <link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+  
+    <title></title>
+    <style>
+   /*  header{position: relative;} */
+    
+
+  
+    .wrapper{position: absolute;overflow: hidden;top:2.75rem; 
+    bottom:2.75rem; width: 100%}
+     .con_top{
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 2.75rem;
+      width: 100%;
+      height:2.1875rem;
+        opacity: .5;
+        background: #fff;
+       color: #666666;
+       display:flex; 
+       z-index: 10;
+     }
+     .con_top div{
+      width: 33.33%;
+      -webkit-box-flex:1;
+
+        text-align:center;
+        line-height: 2.1875;
+        font-size: 0.84375rem;
+     }
+     .con_top .active{
+      color: #0dc441;
+
+}
+      .user{
+      width: 100%;
+        overflow: hidden;
+        background: #fff;
+     }
+    .user dl{
+
+      width: 100%;
+      padding:0.6875rem 0.71875rem;
+      float: left;
+    }
+    .user dl dt{
+      width: 3rem;
+      height: 3rem;
+      border-radius: 100%;
+      border:1px solid #333;
+      float: left;
+    }
+    .user dl dt img{
+      width: 3rem;
+      height: 3rem;
+      border-radius: 100%;
+    }
+    .user dl dd{
+      width: 71%;
+      float: left;
+      margin-left:1rem; 
+    }
+    .user_top{
+      width: 100%;
+      height: 1.5625rem;
+      line-height: 1.5625rem;
+    }
+    .user_top h4{
+      font-size: 0.8125rem;
+      float: left;
+    }
+    .user_top span{
+      display: inline-block;
+      float: right;
+      font-size: 0.8125rem;
+      color: #ccc;
+    }
+    .user dl dd p{
+      height: 1.5rem;
+      line-height: 1.5rem;
+      color: #ccc;
+      font-size: 0.8125rem;
+    }
+    .swiper-container{
+      overflow: hidden;
+      width: 100%;
+      font-size: 1rem;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+   
+   
+    .swiper-container-horizontal>.swiper-pagination-bullets {
+        left: 0;
+        width: 100%;
+        top:0;
+    }
+  .swiper-pagination-bullets .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #fff;
+    color: #0dc441;
+    border-bottom: 3px solid #0dc441;
+}
+    .swiper-pagination-bullet {
+    width: 33.33%;
+    height:2.125rem;
+    line-height: 2.125rem;
+    display: inline-block;
+    background: #fff;
+    border-radius: 0;
+    color: #999;
+    opacity: 1;
+    }
+    .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+         margin: 0 ; 
+   } 
+
+    .con_content .lists{
+       width: 100%;
+      overflow: hidden; 
+    }
+    .lists .list{
+      width:49%;
+      overflow: hidden;
+      float: left;  
+    }
+    .lists .list2{
+      margin-left:0.34375rem;
+      float: right; 
+    }
+    .list dd{
+      padding: 0 0.625rem;
+        width: 87.5%;
+        height:1.8125rem;
+        line-height:1.8125rem;
+        color: #333;
+        font-size: 0.6875rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis; 
+    }
+    .list img{
+      width:100%;
+    }
+</style>
+
+
+    
+  </head>
+  <body>
+<div class="C_wrap">
+      <header>
+           <p><span >热点</span><span class="curr">关注</span></p>
+        </header>
+      <div class="topH"></div>
+   <div class="wrapper" id="wrapper">
+		<ul>
+         <div class="user_content">
+              <div class="swiper-container" id="index1">
+                      <div class="swiper-wrapper">
+               <div class="swiper-slide">
+                    <div class="lists" >
+                    <dl class="list">
+                      <dt><img src="img/pic1.jpg" alt=""></dt>
+                      <dd>小丸子啊小丸子！</dd>
+                    </dl>
+                     <dl class="list list2">
+                      <dt><img src="img/pic1.jpg" alt=""></dt>
+                      <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                    </dl>
+                    <dl class="list">
+                      <dt><img src="img/pic1.jpg" alt=""></dt>
+                      <dd>小丸子啊小丸子！</dd>
+                    </dl>
+                     <dl class="list list2">
+                      <dt><img src="img/pic1.jpg" alt=""></dt>
+                      <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                    </dl>
+                    <dl class="list">
+                      <dt><img src="img/pic1.jpg" alt=""></dt>
+                      <dd>小丸子啊小丸子！</dd>
+                    </dl>
+                     <dl class="list list2">
+                      <dt><img src="img/pic1.jpg" alt=""></dt>
+                      <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                    </dl>
+                  </div>
+              </div>
+            <div class="swiper-slide">
+              <div class="lists" >
+                <dl class="list">
+                  <dt><img src="img/s2-i5.png" alt=""></dt>
+                  <dd>小丸子啊小丸子！</dd>
+                </dl>
+                 <dl class="list list2">
+                  <dt><img src="img/s3-i5.png" alt=""></dt>
+                  <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                </dl>
+                <dl class="list">
+                  <dt><img src="img/s2-i5.png" alt=""></dt>
+                  <dd>小丸子啊小丸子！</dd>
+                </dl>
+                 <dl class="list list2">
+                  <dt><img src="img/pic1.jpg" alt=""></dt>
+                  <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                </dl>
+                <dl class="list">
+                  <dt><img src="img/pic1.jpg" alt=""></dt>
+                  <dd>小丸子啊小丸子！</dd>
+                </dl>
+                 <dl class="list list2">
+                  <dt><img src="img/s2-i5.png" alt=""></dt>
+                  <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                </dl>
+              </div>
+            </div>
+            <div class="swiper-slide">
+                 <div class="lists" >
+                <dl class="list">
+                  <dt><img src="img/s3-i5.png" alt=""></dt>
+                  <dd>小丸子啊小丸子！</dd>
+                </dl>
+                 <dl class="list list2">
+                  <dt><img src="img/pic1.jpg" alt=""></dt>
+                  <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                </dl>
+                <dl class="list">
+                  <dt><img src="img/s3-i5.png" alt=""></dt>
+                  <dd>小丸子啊小丸子！</dd>
+                </dl>
+                 <dl class="list list2">
+                  <dt><img src="img/pic1.jpg" alt=""></dt>
+                  <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                </dl>
+                <dl class="list">
+                  <dt><img src="img/s3-i5.png" alt=""></dt>
+                  <dd>小丸子啊小丸子！</dd>
+                </dl>
+                 <dl class="list list2">
+                  <dt><img src="img/pic1.jpg" alt=""></dt>
+                  <dd>萌萌哒小丸子啊萌萌哒小丸子！</dd>
+                </dl>
+              </div>
+            </div>
+            
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+         </div>
+      </ul>
+    </div>
+   
+
+    <div class="bottom">
+    <footer>
+          <div class="f_curr">
+              <i class="fa fa-home"></i>
+              <p>首页</p>
+          </div>
+           <div>
+              <i class="fa fa-search"></i>
+              <p>发现</p>
+          </div>
+           <div class="camera">
+              <div class="circle"><i class="fa fa-camera " ></i></div>
+              
+          </div>
+           <div >
+              <i class="fa fa-user"></i>
+              <p>我的</p>
+          </div>
+           <div>
+              <i class="fa fa-sign-out"></i>
+              <p>退出</p>
+          </div>
+   </footer>
+  </div> 
+</div>
+<script src="js/swiper-3.3.1.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/iscroll-min.js" ></script>
+<script src="js/commo.js" ></script>
+ <script>
+   
+    var name = ['足球现场','足球生活','足球美女' ];
+     var arr = name.split(",");    
+       var swiper = new Swiper('#index1',{
+        pagination:'.swiper-pagination',
+        paginationClickable :true,
+        paginationBulletRender:function(index,className){
+           return "<span class = "+className+">"+arr[index]+"</span>";
+        }
+
+      });
+       var scroll = new IScroll('#wrapper',{
+				//允许鼠标滚轮控制
+				mouseWheel:true,
+				//允许滚动条显示
+				scrollbars:true
+			})  
+   </script>
+
+  </body>
+</html>

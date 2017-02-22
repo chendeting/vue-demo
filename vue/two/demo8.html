@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo8</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<style>
+       .box{
+       	 width: 100px;
+       	 height: 100px;
+       	 background: gold;
+       	 position: absolute;
+       	 left: 100px;
+       	 top: 0;
+       }
+
+       .zoom-transition{
+       	   display: block;
+       }
+
+       .zoom-enter{
+       	  -webkit-animation: zoomIn 1s;
+       	  -o-animation: zoomIn 1s;
+       	  animation: zoomIn 1s;
+       }
+       .zoom-leave{
+       	 -webkit-animation: zoomOut  1s;
+       	 -o-animation: zoomOut  1s;
+       	 animation: zoomOut  1s;
+       }
+ @-webkit-keyframes zoomIn {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(.95, 1.05, 1);
+            transform: scale3d(.95, 1.05, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(1.05, .95, 1);
+            transform: scale3d(1.05, .95, 1);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes zoomOut {
+  20% {
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+
+  40%, 45% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+            transform: translate3d(0, -20px, 0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+            transform: translate3d(0, 2000px, 0);
+  }
+}
+
+
+</style>
+<body>
+	 <div id="app">
+              <div class="box" transition="zoom" v-show="ok">出现</div>
+              <button @click="change">改变</button>
+	 </div>
+	 <script>
+          var data = {
+          	 ok:true
+          };
+          var vm = new Vue({
+          	  el:'#app',
+          	  data:data,
+          	  methods:{
+          	  	 change:function(){
+          	  	 	  this.ok = ! this.ok;
+          	  	 }
+          	  }
+          });
+	 </script>
+</body>
+</html>

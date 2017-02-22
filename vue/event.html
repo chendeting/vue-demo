@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>EVENT</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+           <button v-on:click="say('hello!', $event)">Submit</button>
+	</div>
+	<script>
+        var data={},
+        var vm = new Vue({
+        	el:'#app',
+        	data:data,
+        	methods:{
+        		 say: function (msg, event) {
+				    // 现在我们可以访问原生事件对象
+				    event.preventDefault()
+				  }
+        	}
+        });
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo3</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<style>
+      .class-a{
+      	color:pink;
+      }
+      .class-b{
+      	font-size: 50px;
+      }
+      .box{
+      	width: 100px;
+      	height: 100px;
+      	border: 1px solid gold;
+        transition: all 0.1s linear;
+      }
+</style>	
+<body>
+	<div id="app">
+            <div :class="{'class-a':isA,'class-b':hot == 'hot'?isB:true}">老师讲的好好好</div>
+          <button @click="changeFont">改变字体</button>
+          <div class="box"  :style="{transform:'translateX('+ x +'px)'}">好想吃大餐</div>
+          <div :style=[styleObjectA,styleObjectB]>现在好烦</div>
+	</div>
+	<script>
+
+      var data = {
+      	  isA : true,
+      	  isB :false,
+      	  hot:'hot',
+      	  x:0,
+      	  styleObjectA:{color:'deeppink'},
+          styleObjectB:{fontSize:'50px'}
+      };
+
+      var vm = new Vue({
+      	    el:'#app',
+      	    data:data,
+      	    methods:{
+      	    	changeFont:function(){
+      	    		this.isB = !this.isB;
+      	    		this.x += 20;
+      	    	}
+      	    },
+      	    computed:{}
+      });
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="app">
+               <my-component></my-component>  
+	</div>
+	<script>
+      //创建组件
+       var MyComponent = Vue.extend({
+       	   template:'<span style="color:#d00">我是组件哦</span>'
+       });
+    //注册创建的组件(全局注册,通常使用,多页面运用)
+    Vue.component('my-component', MyComponent);
+    
+     var vm = new Vue({
+     	     el:'#app',
+     	     data:{},
+     	     //局部注册组件
+     	     /*components:{
+     	     	 'my-component':MyComponent
+     	     }*/
+     });
+	</script>
+</body>
+</html>

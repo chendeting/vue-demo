@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+  <style>
+    .class-a{
+      font-size: 30px;
+    }
+    .class-b{
+      color: red
+    }
+   .box{
+     height: 100px;
+     width: 100px;
+     border: 1px solid #ccc;
+     transition:all 0.3s ease-in;
+   }
+  </style>
+</head>
+<body>
+
+<div id="app">
+<!--   <input type="checkbox" id="checkbox" v-model="checked">
+<label for="checkbox">{{ checked }}</label> -->
+<!-- checkbox组 绑定的是 一个 变量，这个变量是数组，数据回显，只用在数组里添加对应的 value值 -->
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">圆脸</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">高鼻梁</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">美腿</label>
+
+<br>
+<span>Checked names: {{ checkedNames | json }}</span>
+
+<!-- radio v-model 绑定的是一个 变量 -->
+<input type="radio" id="one" value="One" v-model="picked">
+<label for="one">One</label>
+<br>
+<input type="radio" id="two" value="Two" v-model="picked">
+<label for="two">Two</label>
+<br>
+<span>Picked: {{ picked }}</span>
+
+<!-- select -->
+
+<select v-model="selected">
+   <option v-for="o in options" :value="o.value">
+     {{o.text}}
+   </option>
+</select>
+ <span>Selected: {{ selected }}</span> 
+
+
+<input
+  type="checkbox"
+  v-model="toggle"
+  :true-value="a"
+  :false-value="b">
+{{toggle}}
+
+
+
+<select v-model="selected">
+  <!-- 对象字面量 -->
+  <option v-bind:value="{ number: 123 }">123</option>
+</select>
+
+
+<input v-model="msg" debounce="500">
+{{msg}}
+</div>
+
+</body>
+<script>
+var data = {
+   a:'A',
+   b:'B',
+   checked:'',
+   picked:'Two',
+   selected:'',
+   toggle:'',
+   msg:0,
+   checkedNames:['John','Mike'],
+    selected: 'A',
+    options: [
+      { text: 'One', value: 'A' },
+      { text: 'Two', value: 'B' },
+      { text: 'Three', value: 'C' }
+    ]
+ }
+//表现与行为的分离
+var vm = new Vue({
+   el:'#app',
+   data:data,
+   watch:{
+     msg:function(val){
+        setTimeout(function(){
+          console.log(val);
+        },1000)
+     }
+   }
+});
+
+</script>
+</html>

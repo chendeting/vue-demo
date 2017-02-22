@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+  <style>
+    .fade-transition {
+      transition: opacity .3s ease;
+    }
+    .fade-enter, .fade-leave {
+      opacity: 0;
+    }
+    .red{
+      font-size: 20px;
+      color: red
+    }
+    .blue{
+      color:blue;
+    }
+  </style>
+</head>
+<body>
+	<div id="app">
+		   <div v-color="color">我是自定义指令</div>
+       <!-- 传对象 -->
+      <!--  <div v-color="{ color: 'white', text: 'hello!' }">我是自定义指令</div> -->
+	</div>
+</body>
+<script>
+
+    Vue.directive('color',{
+        deep: true,
+        bind:function() {
+            
+        },
+        update:function(val){
+            if (val) {
+               this.el.className = val.klass; 
+            };
+            console.log(val);
+           console.log(this.el); 
+           console.log(this.el.className);
+        },
+        unbind:function(){
+
+        }
+
+    });
+
+    var vm = new Vue({
+       el:'#app',
+       data:{
+         a:1,
+         color:{klass:'red'},
+         todos:["S",'M',"L","XL","XXL"]
+       }
+
+    })
+</script>
+</html>

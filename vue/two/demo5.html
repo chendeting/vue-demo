@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo5</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<body>
+	  <div id="app">
+              <button @click="change('hello!',$event)">点击</button>
+               <p>{{msg}}</p>
+	   </div>
+	   <script>
+
+          var vm = new Vue({
+          	 el:'#app',
+          	 data:{
+          	 	 msg:''
+          	 },
+          	 methods:{
+          	 	 change:function(val,event){
+                      console.log(event.pageX);
+                      console.log(val + "你好");
+                      this.msg = val + '你好！' + event.pageX;
+          	 	 }
+          	 }
+          });
+	   </script>
+</body>
+</html>

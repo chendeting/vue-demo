@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-if+v-show</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+         <div v-if="Math.random()>0.5">不在状态</div>
+         <div v-else>脉动回来</div>
+         <!-- 只是单纯地改变display属性值 适合频繁切换-->
+         <h1 v-show="ok">YES</h1>
+         <!-- 只是把整个dom节点都删除了，适合不频繁的操作-->
+         <template v-if="ok">
+            <h1>不是你的就不是你的</h1>
+            <p>是你的就是跑不掉</p>
+         </template>
+         <button @click="change">改变</button>
+
+	</div>
+	<script>
+
+        var vm = new Vue({
+        	el:'#app',
+        	data:{
+        		ok:true,
+        	},
+        	methods:{
+        		change:function(){
+        			this.ok = !this.ok;
+        			//window.location.reload();//重新加载
+        		}
+        	}
+        });
+	</script>
+</body>
+</html>

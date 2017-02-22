@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>filterBy+orderBy</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+
+            <template v-for="item in items">
+            	<p>商品名称{{item.message}}</p>
+            	<p>商品编号{{$index}}----{{item.id}}</p>
+            </template>
+
+
+            <input type="text" v-model="inputVal">
+
+            <ul>
+
+                  <!-- <li v-for="item in items | filterBy inputVal" >
+                        {{item.message}}
+                  </li> -->
+                 <!-- <li v-for="item in items | filterBy inputVal in fields" >
+                       {{item.message}}--{{item.id}}
+                 </li> -->
+                  <!-- <li v-for="item in items | orderBy 'id' bool" >
+                        {{item.message}}--{{item.id}}
+                  </li> -->
+                  <li v-for="item in items | orderBy order bool | filterBy inputVal in fields" >
+                        {{item.message}}--{{item.id}}--{{item.age}}
+                  </li>
+                   <button @click="changeOrder">改变排序方式</button>
+                    <button @click="changeBool">改变升降方式</button>
+            </ul>
+	</div>
+
+	<script>
+       var data = {
+       	    items : [{message:'长江一号',id:"001",age:99},
+       	    {message:'神州10号',id:"005",age:69},
+       	    {message:'阿波罗1号',id:"002",age:79}],
+       	    fields:['id','message'],//必须是数组，按照里面的key来搜索
+       	    bool:-1,
+       	    order:'age'
+       };
+       var vm = new Vue({
+       	  el:'#app',
+       	  data:data,
+          methods:{
+          	 changeOrder:function(){
+          	 	 this.order = 'message';
+          	 },
+          	 changeBool:function(){
+          	 	this.bool = -this.bool;
+          	 }
+          }
+       });
+	 </script>
+</body>
+</html>

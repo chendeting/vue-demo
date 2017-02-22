@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VUE组件化框架</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<body>
+	  <div id="app">
+            {{message}}
+            {{money | currency}}
+            <!-- v-bind 的简写 和 v-on：的简写-->
+            <a :href="link">{{link}}</a>
+            <button @click =" changeLink">改变</button>
+            <!-- 对html 的标签进行解析-->
+            <p>{{{span}}}</p>
+	  </div>
+
+	  <script>
+        var data = {message:'你好',money:2048,link:'',
+                    span:"<span style='color:#d00'>喜洋洋</span>"}
+        var vm = new Vue({
+             el:'#app',
+             data:data,
+             methods:{
+             	changeLink:function(){
+             		this.link = "http://www.baidu.com"
+             	},
+             },
+             //钩子函数，执行到某一阶段所执行的函数
+             created:function(){
+             		console.log("开始创建")
+             	},
+             beforeCompile:function(){
+                	console.log("准备编译了")
+                },
+             compiled:function(){
+                	console.log("编译已完成");
+                },
+             ready:function(){
+                	console.log("加载完毕")
+                },
+             destroyed:function(){
+                	console.log("数据已销毁")
+                }
+
+        });
+
+	  </script>
+</body>
+</html>

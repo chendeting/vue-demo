@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo4</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+         <template v-if="ok">
+              <h1>今天天气不错</h1>
+              <p>希望明天会更好</p>
+         </template>
+         <button @click="change">改变</button>
+          <h1 v-show="ok">YES</h1>
+
+
+          <div v-if="Math.random() > 0.5">我还会回来的</div>
+          <div v-else>我就在这里</div>
+	</div>
+	<script>
+         var data = {
+         	  ok:true
+         };
+         var vm = new Vue({
+         	el:'#app',
+         	data:data,
+         	methods:{
+         		change:function(){
+         			this.ok = !this.ok;
+         		}
+         	}
+         });
+
+	</script>
+</body>
+</html>

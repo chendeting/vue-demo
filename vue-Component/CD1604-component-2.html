@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+  <style>
+    .fade-transition {
+      transition: opacity .3s ease;
+    }
+    .fade-enter, .fade-leave {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+	<div id="app">
+		 <!-- <my-component :msg="msg">
+             <span slot="name">{{name}}</span>
+             <span slot="con">{{content}}</span>
+          </my-component>
+          <my-component1 :msg="msg">
+             <span slot="name">{{nameOne}}</span>
+             <span slot="con">{{content}}</span>
+          </my-component1>
+          <my-component2 :msg="msg">
+             <span slot="name">{{nameTwo}}</span>
+             <span slot="con">{{content}}</span>
+          </my-component2>
+      -->
+     <component :is="com" :msg="outMsg" keep-alive transition="fade" transition-mode="out-in"></component>
+
+	</div>
+</body>
+<script>
+
+    Vue.component('my-com',{
+       template:"<div><slot name='name'></slot>{{msg}}<slot name='con'>{{todos}} : 呵呵!</slot></div>",
+       props:['msg'],
+       data:function(){
+        return {todos:""}
+       },
+       activate:function(done){
+           setTimeout(function(){
+                this.todos = "用心点！";
+                done();
+           }.bind(this),1000) 
+       }
+    });
+
+    Vue.component('my-com1',{
+       template:"<div><slot name='name'></slot>{{msg}}<slot name='con'>嘻嘻</slot></div>",
+       props:['msg']
+    });
+
+
+      Vue.component('my-com2',{
+       template:"<div><slot name='name'></slot>{{msg}}<slot name='con'>嘿嘿</slot></div>",
+       props:['msg']
+    });
+
+    var vm = new Vue({
+       el:'#app',
+       data:{
+         a:1,
+         outMsg:'注意还有1周的课了！',
+         content:'不要在大意了！时间不多了！',
+         name:"裂全：",
+         nameOne:"云削：",
+         nameTwo:"家坤：",
+         com:"my-com"
+       }
+
+    })
+</script>
+</html>

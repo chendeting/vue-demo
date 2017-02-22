@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义指令</title>
+	<script src="js/vue.min.js"></script>
+</head>
+
+<body>
+	  <div id="app">
+            {{ a | pre country "我的！"}}
+            <!--定义两个组件-->
+            <my-com></my-com>			
+            <my-com1></my-com1>
+	  </div>
+	  <script>
+	  //接收两个参数：过滤器 ID 和过滤器函数。过滤器函数以值为参数，返回转换后的值：
+	    Vue.filter('pre',function(val,param1,param2){
+              return param1 + val + param2;//结果一定要返回去，val为父节点的变量a，param为|自定义后面的参数
+	    });
+	    //混合以一种灵活的方式为组件提供分布复用功能。混合对象可以包含任意的组件选项。当组件使用了混合对象时，混合对象的所有选项将被“混入”组件自己的选项中。
+	    //定义一个混合对象
+	     var myMixin = {
+	         created:function(){
+	            console.log(11);
+	          }
+        }
+          // 定义一个组件，使用这个混合对象
+	    Vue.component('my-com',{
+             mixins:[myMixin]  
+	    });
+	    Vue.component('my-com1',{
+              mixins:[myMixin]
+	    });
+        var vm = new Vue({
+        	 el:'#app',
+        	 data:{
+        	 	 a:"是",
+        	 	 country:'Money'
+        	 }
+        });
+	  </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transition</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<style>
+       .box{
+       	   width: 100px;
+       	   height:100px;
+       	   background: #d00;
+       	   opacity: 1;
+       	   position: absolute;
+       	   left: 40px;
+       	   top:40px;
+       }
+      /* 这个类是一直会被添加到dom上的 */
+       .test-transition{
+           transition: all 1s linear;
+       }
+     /* enter这个类是刚进入时的状态leave是出去时的动画 */
+       .test-enter,.test-leave{
+       	opacity: 0;
+       }
+
+     .bounce-transition{
+     	 display: inline-block;/*要加在块级元素上,否则 scale 动画不起作用 */
+     }
+
+     .bounce-enter{
+    	 animation: rotateIn 1s;
+    } 
+
+     @-webkit-keyframes rotateIn {
+  0% {
+    -webkit-transform-origin: center;
+            transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+            transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform-origin: center;
+            transform-origin: center;
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1;
+  }
+}
+
+
+    .bounce-leave{
+  	 animation: zoomOutDown 1s;
+  }
+ @-webkit-keyframes zoomOutDown {
+  40% {
+    opacity: 1;
+    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+            transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+            animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
+            transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
+    -webkit-transform-origin: center bottom;
+            transform-origin: center bottom;
+    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+            animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  }
+}
+</style>
+<body>
+	<div id="app">
+                <div class="box" transition="test" v-show="isShow">出现</div>
+                 <button @click="changeShow">出现</button>
+
+
+                 <div class="box" transition="bounce" v-if="isShow">V-IF</div>
+	</div>
+	<script>
+
+          var data = {
+          	 isShow:true,
+
+          };
+         //transition的钩子函数，进入和离开时分别需要做的动作
+          Vue.transition('test',{
+			   afterEnter: function (el) {
+			    console.log("我进入了");
+			  },
+			   afterLeave: function (el) {
+			    console.log("我出去了");
+			  },
+			})
+		Vue.transition('bounce', {
+		  enterClass: 'rotateIn',
+		  leaveClass: 'zoomOutDown'
+		})
+
+          //表现与行为的分离
+          var vm = new Vue({
+          	 el:'#app',
+          	 data:data,
+          	 methods:{
+                changeShow : function(){
+                	 this.isShow = !this.isShow;
+                }
+
+          	 }
+          });
+	</script>
+</body>
+</html>

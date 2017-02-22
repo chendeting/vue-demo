@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes"> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet"  href="css/common.css">
+	<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+	
+		<title></title>
+		<style>
+   /*  header{position: relative;} */
+   
+
+    
+     .container{
+     	background: #f1f1f1;
+     }
+    .search_top{
+    	width: 100%;
+    	height: 2.0625rem;
+    	background: #fff;
+    }
+    .search_top input,.search_top button{
+    	 border: 1px solid #ccc;
+    	 margin: 0.25rem;
+    	 width: 80%;
+    	 height:1.562rem; 
+    	 border-radius: 5px;
+    	 font-size: 0.625rem;
+    	 line-height: 1.562rem;
+    	 display: inline-block;
+    	 float: left;
+    }
+    .search_top input{ text-indent: 0.5625rem;}
+    .search_top button{
+         text-align: center;
+         margin:0.25rem 0; 
+         width: 15%;
+    	 background: #0dc441 ;
+    	 border: none;
+    	 color: #fff;
+    }
+    .user{
+     	border-bottom:1px solid #e5e5e5; 
+     	width: 100%;
+        overflow: hidden;
+        background: #fff;
+     }
+    .user dl{
+
+    	width: 100%;
+    	padding:0.6875rem 0.71875rem;
+    	float: left;
+    }
+    .user dl dt{
+    	width: 3rem;
+    	height: 3rem;
+    	border-radius: 100%;
+    	border:1px solid #333;
+    	float: left;
+    }
+    .user dl dt img{
+    	width: 3rem;
+    	height: 3rem;
+    	border-radius: 100%;
+    }
+    .user dl dd{
+    	width: 75%;
+    	float: left;
+    	margin-left:1rem; 
+    }
+    .user_top{
+    	width: 100%;
+    	height: 1.5625rem;
+    	line-height: 1.5625rem;
+    }
+    .user_top h4{
+    	font-size: 0.8125rem;
+    	float: left;
+    }
+    .user_top span{
+    	    display: inline-block;
+          float: right;
+          width: 3.5rem;
+          text-align: center;
+          height: 1.0625rem;
+          line-height: 1.0625rem;
+          font-size: 0.6875rem;
+          color: #fff;
+          border-radius: 3px;
+          background: #e5e5e5;
+    }
+    .user_top .search_curr{
+    	background: #0dc441;
+    }
+    .user dl dd p{
+    	height: 1.5rem;
+    	line-height: 1.5rem;
+    	color: #ccc;
+    	font-size: 0.8125rem;
+    }
+		</style>
+  
+    
+    
+	</head>
+	<body>
+<div class="C_wrap">
+			<header>
+
+		        <h1>发现</h1>
+		    </header>
+      <div class="topH"></div>
+	  <div class="container">
+	     <form  class="search_top">
+                <input type="text" placeholder="请输入昵称">
+                 <button>搜索</button>
+	     </form>
+         <div class="user">
+                <dl>
+                	<dt><img src="img/s3-i5.png" alt=""> </dt>
+                	<dd>
+                	    <div class="user_top">
+	                	  <h4>我叫小萌</h4><span class="search_curr">关注</span>
+	                	</div>  
+	                    <p>我是小萌，我怕谁！哈哈哈哈！</p>
+                	</dd>
+                	
+                </dl>
+	     </div>    
+	     <div class="user">
+                <dl>
+                	<dt><img src="img/s3-i5.png" alt=""> </dt>
+                	<dd>
+                	    <div class="user_top">
+	                	  <h4>我叫小萌</h4><span>取消关注</span>
+	                	</div>  
+	                    <p>我是小萌，我怕谁！哈哈哈哈！</p>
+                	</dd>
+                	
+                </dl>
+	     </div>
+	     <div class="user">
+                <dl>
+                	<dt><img src="img/s3-i5.png" alt=""> </dt>
+                	<dd>
+                	    <div class="user_top">
+	                	  <h4>我叫小萌</h4><span>取消关注</span>
+	                	</div>  
+	                    <p>我是小萌，我怕谁！哈哈哈哈！</p>
+                	</dd>
+                	
+                </dl>
+	     </div>
+        
+	  </div>
+	  <div class="bottom">
+	  <footer>
+          <div >
+              <i class="fa fa-home"></i>
+              <p>首页</p>
+          </div>
+           <div class="f_curr">
+              <i class="fa fa-search"></i>
+              <p>发现</p>
+          </div>
+           <div class="camera">
+              <div class="circle"><i class="fa fa-camera " ></i></div>
+              
+          </div>
+           <div>
+              <i class="fa fa-user"></i>
+              <p>我的</p>
+          </div>
+           <div>
+              <i class="fa fa-sign-out"></i>
+              <p>退出</p>
+          </div>
+	 </footer>
+	</div> 
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/commo.js" ></script>
+<script>
+       $(function(){
+             $(".user_top").find('span').click(function(){
+                
+                 if($(this).attr("class") === "search_curr"){
+                        $(this).removeClass("search_curr").text("取消关注");
+                 }else{ 
+                  $(this).addClass("search_curr").text("关注").parents(".user").siblings().find("span").removeClass("search_curr").text("取消关注");
+                  }
+                 
+
+             });  
+
+       });
+</script>
+	</body>
+</html>

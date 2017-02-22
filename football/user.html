@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes"> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+	<link rel="stylesheet"  href="css/common.css">
+	<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+	
+		<title></title>
+		<style>
+   /*  header{position: relative;} */
+    
+
+  
+     .container{
+     	background: #f1f1f1;
+     }
+      .user{
+     	width: 100%;
+        overflow: hidden;
+        background: #fff;
+     }
+    .user dl{
+
+    	width: 100%;
+    	padding:0.6875rem 0.71875rem;
+    	float: left;
+    }
+    .user dl dt{
+    	width: 3rem;
+    	height: 3rem;
+    	border-radius: 100%;
+    	border:1px solid #333;
+    	float: left;
+    }
+    .user dl dt img{
+    	width: 3rem;
+    	height: 3rem;
+    	border-radius: 100%;
+    }
+    .user dl dd{
+    	width: 71%;
+    	float: left;
+    	margin-left:1rem; 
+    }
+    .user_top{
+    	width: 100%;
+    	height: 1.5625rem;
+    	line-height: 1.5625rem;
+    }
+    .user_top h4{
+    	font-size: 0.8125rem;
+    	float: left;
+    }
+    .user_top span{
+    	display: inline-block;
+    	float: right;
+    	font-size: 0.8125rem;
+    	color: #ccc;
+    }
+    .user dl dd p{
+    	height: 1.5rem;
+    	line-height: 1.5rem;
+    	color: #ccc;
+    	font-size: 0.8125rem;
+    }
+    .swiper-container{
+    	height:23.3125rem;
+    	width: 100%;
+    	font-size: 1rem;
+    	color: #FFFFFF;
+    	margin-bottom: 20px;
+    }
+
+    .swiper-container-horizontal>.swiper-pagination-bullets {
+		    left: 0;
+		    width: 100%;
+		    top: 0;
+		}
+	.swiper-pagination-bullets .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #fff;
+    color: #0dc441;
+    border-bottom: 3px solid #0dc441;
+}
+    .swiper-pagination-bullet {
+    width: 33.33%;
+    height: 1.25rem;
+    display: inline-block;
+    background: #fff;
+    border-radius: 0;
+    color: #999;
+    opacity: 1;
+    }
+    .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+         margin: 0 ; 
+   } 
+</style>
+
+
+    
+	</head>
+	<body>
+<div class="C_wrap">
+			<header>
+
+		        <h1>个人中心</h1>
+		    </header>
+      <div class="topH"></div>
+	  <div class="container">
+	     <div class="user">
+                <dl>
+                	<dt><img src="img/s3-i5.png" alt=""> </dt>
+                	<dd>
+                	    <div class="user_top">
+	                	  <h4>我叫小萌</h4>
+	                	</div>  
+	                    <p>我是小萌，我怕谁！哈哈哈哈！</p>
+                	</dd>
+                </dl>
+	     </div>
+         <div class="user_content">
+              <div class="swiper-container" id="index1">
+			       <div class="swiper-wrapper">
+						<div class="swiper-slide">
+
+						     <div class="con_camera">
+                                <img src="img/pic1.jpg" alt="">
+                             </div>
+						</div>
+						<div class="swiper-slide">
+                             <div class="con_attention">
+                                  <img src="img/s2-i5.png" alt="">
+                             </div>
+						</div>
+						<div class="swiper-slide">
+						     <div class="con_fans">
+                                   <img src="img/s3-i5.png" alt="">
+						     </div>
+						</div>
+						
+			      </div>
+			      <div class="swiper-pagination"></div>
+		    </div>
+         </div>
+	  </div>
+	  <div class="bottom">
+	  <footer>
+          <div >
+              <i class="fa fa-home"></i>
+              <p>首页</p>
+          </div>
+           <div>
+              <i class="fa fa-search"></i>
+              <p>发现</p>
+          </div>
+           <div class="camera">
+              <div class="circle"><i class="fa fa-camera " ></i></div>
+              
+          </div>
+           <div class="f_curr">
+              <i class="fa fa-user"></i>
+              <p>我的</p>
+          </div>
+           <div>
+              <i class="fa fa-sign-out"></i>
+              <p>退出</p>
+          </div>
+	 </footer>
+	</div> 
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/commo.js" ></script>
+<script src="js/swiper-3.3.1.min.js"></script>
+   <script>
+       var name = ['照片','关注','粉丝' ];
+	   var arr = name.split(",");    
+       var swiper = new Swiper('#index1',{
+				pagination:'.swiper-pagination',
+        paginationClickable :true,
+				paginationBulletRender:function(index,className){
+					 return "<span class = "+className+">"+arr[index]+"(<em>"+1+"</em>)</span>";
+				}
+
+			});
+        
+   </script>
+
+	</body>
+</html>

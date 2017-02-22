@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+<!-- checkbox组 绑定的是 一个 变量，这个变量是数组，数据回显，只用在数组里添加对应的 value值 -->
+           <input type="checkbox" id="jack" value="jack" v-model="checkedNames">
+           <label for="jack">长发</label>
+           <input type="checkbox" id="John" value="john" v-model="checkedNames">
+           <label for="john">中长发</label>
+           <input type="checkbox" id="Candy" value="Candy" v-model="checkedNames">
+           <label for="Candy">短发</label><br>
+           <span>checkedNames : {{checkedNames | json}}</span><br>
+<!-- radio v-model 绑定的是一个 变量 -->
+<input type="radio" id="one" value="One" v-model="picked">
+<label for="one">One</label>
+<br>
+<input type="radio" id="two" value="Two" v-model="picked">
+<label for="two">Two</label>
+<br>
+<span>Packed:{{picked}}</span>
+
+
+<!-- select -->
+
+<select  v-model="selected">
+  <option v-for="o in options" :value="o.value">
+         {{o.text}}
+  </option>
+
+</select>
+ <span>Selected: {{ selected }}</span> 
+<!-- 但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串-->
+
+<!-- 选中时为a，没选中时为b-->
+<input type="checkbox" v-model="toggle" :true-value="a" :false-value="b">
+          {{toggle}}
+
+
+      <select v-model="selected">
+  <!-- 对象字面量 -->
+  <option v-bind:value="{ number: 123 }">123</option>
+</select>
+
+<!--过500ms 显示msg，同步输入框中的内容 ，用在搜索栏中，过一段时间自动向后台发送请求-->
+<input v-model="msg" debounce="500">
+{{msg}}    
+	</div>
+	<script>
+      var data = {
+      	    checkedNames:['jack','john'],//回显功能，把value值加到数组中
+            picked:'Two',
+            selected: 'C',
+		    options: [
+		      { text: 'One', value: 'A' },
+		      { text: 'Two', value: 'B' },
+		      { text: 'Three', value: 'C' }
+		    ],
+		    toggle:'',
+		    a:'A',
+		    b:'B',
+		    msg:0
+      };
+      var vm = new Vue({
+      	 el:'#app',
+      	 data:data,
+        
+      });
+	</script>
+</body>
+</html>

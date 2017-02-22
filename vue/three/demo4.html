@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<style>
+      .class-a{
+      	 color: #d00;
+      }
+     .class-b{
+     	 font-size: 30px;
+     }
+</style>
+
+<body>
+	<div id="app">
+           <div v-if="ok" :class="{'class-b':ok}">ok是true</div>
+           <p v-else>ok是<div :class="{'class-a':!ok,'class-b':!ok}">false</div></p>
+           <template v-if='ok'>
+               <h1 :class="{'class-a':ok}">哈哈哈哈</h1>
+               <p>坚持就是胜利</p>
+           </template>
+           <button @click="change">改变</button>
+	</div>
+	<script>
+           var data = {
+           	   ok:true
+           };
+           var vm = new Vue({
+           	   el:'#app',
+           	   data:data,
+           	   methods:{
+           	   	  change:function(){
+           	   	  	 this.ok = ! this.ok;
+           	   	  }
+           	   }
+           });
+	   </script>
+</body>
+</html>

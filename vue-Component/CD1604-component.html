@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		 <my-component></my-component>
+		 <my-component1></my-component1>
+
+	</div>
+</body>
+<script>
+   //1：创建一个组件
+    //var data1 = {a:1}
+    var MyComponent = Vue.extend({
+    	data:function(){
+    		//在组件里面一定要返回一个对象，不能是地址
+    		return {a:1}
+    	},
+        template:'<span style="color:red">我是组件哦！{{a}}<button @click="changeA">A</button></span>',
+       methods:{
+       	changeA:function(){
+       		this.a = 2;
+       	}
+       }
+    });
+  //2:注册创建的组件(全局注册)
+    Vue.component('my-component', MyComponent);
+
+	Vue.component('my-component1', {
+	  data:function(){
+	  	 return {a:1}
+	  },
+	  template: '<div>A custom component!{{a}}</div>'
+	})
+
+	var vm = new Vue({
+		el:'#app',
+		data:{}
+	});
+</script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		 <my-component :msg-ok="msg" @give-money="checkMoney"></my-component>
+		 <my-component1 :msg-ok.once="msg"></my-component1>
+	</div>
+</body>
+<script>
+   //1：创建一个组件
+    //var data1 = {a:1}
+    var MyComponent = Vue.extend({
+    	data:function(){
+    		//在组件里面一定要返回一个对象，不能是地址
+    		return {a:1}
+    	},
+    	/*props:{
+    	  'msgOk':[String,Number]
+    	},*/
+    	/*props:{
+          msgOk:{
+          	type: String,
+            required: true , //必须滴要传
+            default:"真多啊！"
+          }
+    	},*/
+    	props:{
+    	   msgOk:{
+    	   	 type:Number,
+    	   	 validator:function(val){
+                if (val>=60) {
+                   return true
+                }else{
+                	console.error("滚回去重考！");
+                	return false
+                };
+                
+    	   	 }
+    	   }
+    	},
+        template:'<span style="color:red">我是组件哦！{{a}}<button @click="wantMoney">要钱</button>{{msgOk}}</span>',
+       methods:{
+       	wantMoney:function(){
+          //重点，不能使用驼峰的自定义事件名,并且不能有大写字母
+       		this.$dispatch('give-money',100);
+       	}
+       },
+       events:{
+       	   pushMoney:function(money){
+                if (money-0) {
+                	console.log("我有了"+money+"块钱，浪去了！")
+                }else{
+                	console.log(money);
+                };
+       	   }
+       }
+    });
+  //2:注册创建的组件(全局注册)
+    Vue.component('my-component', MyComponent);
+  //语法糖
+	Vue.component('my-component1', {
+	  data:function(){
+	  	 return {a:1}
+	  },
+	  props:['msgOk'],
+	  template: '<div>A custom component!{{msgOk}}</div>'
+	})
+
+	var vm = new Vue({
+		el:'#app',
+		data:{
+		   'msg':90
+		},
+    methods:{
+        checkMoney:function(money){
+            if (money>100) {
+                money = "找你妈去！"
+            }
+            this.$broadcast('pushMoney',money);
+      }
+    }
+	});
+</script>
+</html>

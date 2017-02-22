@@ -1,0 +1,8 @@
+单元自动测试 https://www.tenpay.com/v2/labs/wrtb/index.shtml
+js 检测工具 http://jshint.com/
+
+//font-awesome
+http://www.thinkcmf.com/font/examples
+
+
+<link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

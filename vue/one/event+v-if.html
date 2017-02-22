@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>EVENT</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+           <!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
+           <input v-on:keyup.13="submit">
+           <button v-on:click="say('hello!', $event)">Submit</button>
+           <button @click="change('hello!',$event)">点击</button>
+               <p>{{msg}}</p><br>
+          <div v-if="ok" :class="{'class-b':ok}">ok是true</div>
+           <p v-else>ok是<div :class="{'class-a':!ok,'class-b':!ok}">false</div></p>
+           <template v-if='ok'>
+               <h1 :class="{'class-a':ok}">哈哈哈哈</h1>
+               <p>坚持就是胜利</p>
+           </template>
+           <button @click="changeTo">改变</button>
+	</div>
+	<script>
+        var data={msg:'',ok:true};
+        var vm = new Vue({
+        	el:'#app',
+        	data:data,
+        	methods:{
+        		 say: function (msg, event) {
+				    // 现在我们可以访问原生事件对象
+				    console.log(event.preventDefault());
+				    console.log(event.clientX);
+				    console.log(msg);
+				  },
+				  change:function(val,event){
+                      console.log(event.pageX);
+                      console.log(val + "你好");
+                      this.msg = val + '你好！' + event.pageX;
+          	 	 },
+          changeTo:function(){
+                     this.ok = ! this.ok;
+                  }
+        	}
+        });
+	</script>
+</body>
+</html>

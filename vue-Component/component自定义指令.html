@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义指令</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<style>
+        .red{
+        	color: red;
+        	font-size: 20px;
+        }
+        .si{
+        	 font-size: 50px;
+        }
+        .pink{
+            color: green;
+        }
+</style>
+<body>
+	  <div id="app">
+
+           <div v-color="color">我是自定义指令red</div>
+           <p v-size="size">	aaaaaaaaaaaa </p>
+	  </div>
+	  <script>
+	       //自定义指令名称为color，color为对象
+           Vue.directive('color',{
+                 deep:true,//当外部传入的变量color是一个对象时，如果自定义指令用在一个对象上，当对象内部属性变化时要触发 update，实时变化必须指定deep
+                 bind:function(){
+
+                 },
+                 //常使用
+                 update:function(val){//val是父节点传进来的变量
+                      console.log(this.el.className);
+                    if (val) {
+
+		               this.el.className = val.clazz; 
+		            };   
+                    console.log(val);
+                    console.log(this.el); //为当前父节作用域下的div
+                   
+                 },
+                 unbind:function(){
+
+                 }
+           });
+           //size为字符串
+           Vue.directive('size',{
+                 bind:function(){
+
+                 },
+                 //常使用
+                 update:function(val){//val是父节点传进来的变量
+                      console.log(this.el.className);
+                    if (val) {
+		               this.el.className = val; 
+		            };   
+                    console.log(val);
+                    console.log(this.el); //为当前父节作用域下的div
+                   
+                 },
+                 unbind:function(){
+
+                 }
+           });
+        var vm = new Vue({
+        	 el:'#app',
+        	 data:{
+        	 	color:{clazz:'red'},
+        	 	size:"si"
+        	 }
+        });
+	  </script>
+</body>
+</html>

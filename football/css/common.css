@@ -1,0 +1,113 @@
+/*reset*/
+body,button,input,select,textarea{font:100%/1 "Helvetica Neue",Helvetica,STHeiTi,"Microsoft YaHei";}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,article,aside,footer,header,hgroup,nav,section,menu{margin:0; padding:0;-webkit-text-size-adjust:100%;}
+table{border-collapse:collapse;border-spacing:0;}
+em,i{font-style:normal;}
+li{list-style:none;}
+img{border:0;}
+input,img{vertical-align:middle;}
+article,aside,footer,header,hgroup,nav,section,menu{display:block;}
+a{text-decoration:none;}
+.clearfix:after{content:"";display:block;height:0;clear:both;visibility:hidden;}
+html,body{height:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;color: #666666;font-size: 16px;}
+a,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,0);outline:none; -webkit-font-smoothing:antialiased}
+.C_wrap{width:100%;}
+.topH{height:2.75rem; }
+header{
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	height:2.75rem;
+    width:100%;
+    background:#0dc441;
+    z-index: 10;
+}
+
+header h1{
+	width:100%;
+	text-align: center;
+	font-size:1rem;
+	line-height:2.75rem;
+	color:#fff;
+	font-weight:300;
+}
+ header p{
+    	position: absolute;
+    	left: 0;
+    	right: 0;
+    	top: 0;
+    	bottom: 0;
+    	margin: auto;
+    	width: 6rem;
+    	height: 1.5625rem;
+    	border-radius: 2rem;
+    	overflow: hidden;
+
+    }
+   
+     header p span{
+     	position: absolute;
+     	z-index: 1;
+     	display: inline-block;
+     	width: 50%;
+     	height: 1.5625rem;
+     	line-height: 1.5625rem;
+     	color: #fff;
+     	text-align: center;
+     	font-size: 0.6875rem;
+     	background: #64d985;
+     	
+     }
+     header p span:nth-of-type(2){
+     	right: 0;
+     	
+     }
+  .curr{
+          background: #3dd067;
+          opacity: .7;
+     }
+.container{
+	position: absolute;
+    top:2.75rem; 
+    bottom:2.75rem; 
+    width: 100%;
+    overflow: hidden;
+}
+
+footer{
+	display: -webkit-box;
+	height:2.75rem;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    background: #fff;
+     z-index: 10;
+}
+footer .fa{font-size: 1.5rem;}
+footer div{
+	-webkit-box-flex: 1;
+	text-align: center;
+	height:2.75rem;
+	line-height:1rem;
+	font-size: 0.625rem;
+	color: #d6d6d6;
+}
+footer div:nth-of-type(3){
+	
+}
+.circle{
+	border-radius: 100%;
+    border: 1px solid #ccc;
+    width: 90%;
+    height: 3.6rem;
+    line-height: 4rem;
+    position: relative;
+    top: -1rem;
+    background: #fff;
+    
+   }
+.f_curr{
+	color: #64d985;
+}

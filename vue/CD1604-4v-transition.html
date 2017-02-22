@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+  <link rel="stylesheet" href="../animate.css">
+  <style>
+      .box{
+        height: 80px;
+        width: 80px;
+        border: 1px solid red;
+        opacity: 1;
+        background: red;
+      }
+      /* 这个类是一直会被添加到dom上的 */
+      .test-transition{
+         transition:all 0.8s ease-in;
+      }
+      .test-enter,.test-leave{
+        opacity: 0;
+      }
+     
+     .bounce-transition {
+  display: inline-block; /* 否则 scale 动画不起作用 */
+}
+.bounce-enter {
+  animation: bounceInLeft 1.5s;
+}
+.bounce-leave {
+  animation: bounceOutRight 1.5s;
+}
+
+ 
+@-webkit-keyframes bounceInLeft {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+            transform: translate3d(-3000px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+            transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+            transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+@-webkit-keyframes bounceOutRight {
+  20% {
+    opacity: 1;
+    -webkit-transform: translate3d(-20px, 0, 0);
+            transform: translate3d(-20px, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+            transform: translate3d(2000px, 0, 0);
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<div id="app">
+    <div v-show="show" transition="bounce" class="box">阿斯顿</div>
+    <button @click="changeshow">XXX</button>
+</div>
+
+</body>
+<script>
+var data = {
+   a:'A',
+   b:'B',
+   show:true
+ }
+
+ Vue.transition('test',{
+   afterEnter: function (el) {
+    console.log("我进入了");
+  },
+   afterLeave: function (el) {
+    console.log("我出去了");
+  },
+})
+
+/*Vue.transition('bounce', {
+  enterClass: 'bounceInLeft',
+  leaveClass: 'bounceOutRight'
+})
+*/
+//表现与行为的分离
+var vm = new Vue({
+   el:'#app',
+   data:data,
+   methods:{
+    
+      changeshow:function(){
+         this.show = !this.show;
+      }
+
+   }
+});
+
+
+</script>
+</html>

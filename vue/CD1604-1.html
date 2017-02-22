@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+<div id="app">
+{{span}}  <br>
+{{a+1}} <br>
+
+{{money | currency}}
+<a :href="link">{{link}}</a>
+<button @click="changeLink">改变</button>
+</div>
+</body>
+<script>
+var data = {
+   a:1,
+   b:0,
+   money:1024,
+   link:'',
+   span:'<span style="color:red">喜洋洋</span>'}
+
+var vm = new Vue({
+   el:'#app',
+   data:data,
+   methods:{
+    changeLink:function(){
+      this.link = 'www.baidu.com'
+    }
+   },
+   created:function(){
+      console.log("我被创建了");
+    /*  setTimeout(function(){
+        this.a = 4;
+      }.bind(this),1000)*/
+   },
+   beforeCompile:function(){
+     console.log("要编译模板了")
+   },
+   compiled:function(){
+     console.log("编译模板完成")
+   },
+   ready:function(){
+    console.log("OK了")
+   },
+   destroyed:function(){
+      console.log("被销毁了")
+   }
+
+});
+
+//Vue.set(data,'b',2)
+</script>
+</html>

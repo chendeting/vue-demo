@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+<div id="app">
+<input type="text" v-model="firstName">
+<input type="text" v-model="lastName">
+  <h1>{{fullName}}</h1>
+<input type="text" v-model="fullName">  
+<input type="text" v-model="price1">
+<input type="text" v-model="count">
+    <p>总计：<input type="text" v-model="total" style="border:0"> </p>
+
+ <ul>
+ 	<li v-for="p in price">
+           {{p.p}}
+ 	</li>
+ 	<li>{{sum}}</li>
+ </ul>
+</div>
+</body>
+<script>
+var data = {
+      firstName:'chen',
+      lastName:'yu',
+      price1:20,
+      count:1,
+      price:[{p:110},{p:20},{p:30}],
+
+  }
+
+var vm = new Vue({
+   el:'#app',
+   data:data,
+   methods:{
+    changeLink:function(){
+      this.link = 'www.baidu.com'
+    }
+   },
+   computed:{
+   	  fullName:{
+   	  	get:function(val){
+           return  this.firstName + ' ' + this.lastName;
+   	  	},
+   	  	// setter，重新设置名字
+       set: function (newValue) {
+      var names = newValue.split(' ')
+      this.firstName = names[0]
+      this.lastName = names[names.length - 1]
+    }
+   	  },
+   	 total:{
+   	 	get:function(){
+   	 		return this.price1 * this.count;
+   	 	},
+   	 	//价格不变，计算出数量
+   	 	set:function(newVal){
+            var a = newVal / this.price;
+            this.count = a;
+   	 	}
+   	  },
+   	 sum:function(newVal){
+        var sum = 0;
+         this.price.forEach(function(val,index){
+         	  sum += val.p;
+         })
+         return sum;
+   	 } 
+   }
+
+});
+
+//Vue.set(data,'b',2)
+</script>
+</html>

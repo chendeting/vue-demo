@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+  <style>
+    .class-a{
+      font-size: 30px;
+    }
+    .class-b{
+      color: red
+    }
+   .box{
+
+     height: 100px;
+     width: 100px;
+     border: 1px solid #ccc;
+     transition:all 0.3s ease-in;
+   }
+  </style>
+</head>
+<body>
+
+<div id="app">
+ <template v-if="ok">
+   <h1>Yes</h1>
+   <p>我是小弟</p>
+ </template>
+
+<div v-if="Math.random() > 0.5">
+  Sorry
+</div>
+<div v-else>
+  Not sorry
+</div>
+
+   <h1 v-show="ok">Yes</h1>
+</div>
+
+</body>
+<script>
+var data = {
+   a:1,
+   ok:true}
+
+var vm = new Vue({
+   el:'#app',
+   data:data
+});
+
+</script>
+</html>

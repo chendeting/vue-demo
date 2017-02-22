@@ -1,0 +1,13 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "Young demo",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "demo"
+  ],
+  "author": "Young",
+  "license": "ISC"
+}

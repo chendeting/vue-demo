@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum=1,user-scalable=no" />
+	<title>login</title>
+	<link rel="stylesheet"  href="css/common.css">
+	<style>
+
+    .loginBox{
+    	padding: 0.9375rem;
+    	width: 100%;
+    	overflow: hidden;
+    }
+    
+   .loginBox form{
+    	width: 91%;
+    	overflow: hidden;
+    }
+  .loginBox form  .info{
+    	width: 100%;
+    	height: 2.03125rem;
+    	color: #b2b2b2;
+    	border:none;
+    	border-bottom: 1px solid #b2b2b2;
+    }
+
+   .loginBox form input:nth-of-type(2){margin-top: 1.65625rem;}
+    .loginBox p{height: 4.125rem;line-height: 4.125rem;width: 100%;font-size:0.625rem;color: #b2b2b2;}
+    .loginBox p a{color:#a3e9b7;text-decoration:underline; }
+    .loginBox button{width: 90%;height: 2.75rem;line-height: 2.75rem;
+    	background:#0dc441;color: #fff; font-size: 0.875rem;text-align:center;border: none;}
+	</style>
+</head>
+<body>
+	 <header>
+           
+           <h1>足球圈 —— 登录</h1>
+	 </header>
+	 <div class="topH"></div>
+	 <div class="container">
+        <div class="loginBox">
+            <form action="post">
+                <input type="text" placeholder="手机号" class="info">
+                <input type="text" placeholder="密码" class="info">
+            </form>
+            <p>还没有账号？点击此处立即<a href="javascript:;">注册</a></p>
+            <button>提交</button>
+        </div>
+	 </div>
+	 <div class="bottomH"></div>
+	 <footer></footer>
+</body>
+</html>

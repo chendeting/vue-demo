@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>class+style</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<style>
+    .class-a{
+    	font-size: 40px;
+    }
+   .class-b{
+   	  color: #d00;
+   }
+   .box{
+   	  position: relative;
+   	  left: 60px;
+   	  top: 140px;
+   	  height: 100px;
+      width: 100px;
+      border:1px solid gold;
+     /*  transition: all 0.2s linear; */
+      transition:all 0.3s ease-in;
+
+   }
+</style>
+<body>
+	<div id="app">
+             
+        <div class="static" :class="{'class-a':isA,'class-b':hot == 'hot'?isB:''}">aaaaaaa</div>
+         <div class="box" :style="{transform:'translateX('+ x +'px)'}">运动</div> 
+        <div class="box" :style="{color:'green',transform:'translateX('+ _x + 'px)'}">运动</div>
+        <button @click="changeX">跑啊跑</button>
+
+        <div :style=[styleObjectA,styleObjectB]>现在好烦</div>
+	</div>
+
+	<script>
+	   var data = {
+             isA:true,
+             isB:true,
+             x:0,
+             hot:'hot',
+             styleObjectA:{color:'deeppink'},
+             styleObjectB:{fontSize:'50px'}
+	   }
+       var vm = new Vue({
+       	 el:'#app',
+       	 data:data,
+       	 methods:{
+       	 	changeX:function(){
+       	 		this.x += 30;
+       	 	},
+       	 },
+       	 computed:{}
+
+       });
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo2</title>
+	<script src="../js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+          <input type="text" v-model="firstName">
+          <input type="text" v-model="lastName">
+          <h1>{{fullName}}</h1>
+
+          <input type="text" v-model="price">
+          <input type="text" v-model="count">
+          <p>总计：<input type="text" v-model="total"></p>
+
+          <ul>
+              <li v-for="p in price1">
+                   {{p.p}}
+              </li>
+              <li>{{sum}}</li>
+          </ul>
+          <button @click="changePrice">减价格</button>
+	</div>
+	<script>
+	     var data = {
+	     	 price:10,
+	     	 count:1,
+	     	 firstName:'chen',
+             lastName:'han',
+             price1:[{p:100},{p:30},{p:40}]
+	     }
+         var vm = new Vue({
+         	el:'#app',
+         	data:data,
+         	methods:{
+         		changePrice:function(){
+         			this.price1.shift();
+         		}
+         	},
+         	computed:{
+         		fullName:{
+         			get:function(newVal){
+                        return this.firstName + ' ' + this.lastName;
+         			},
+         			set:function(newVal){
+         				var names = newVal.split(' ');//将字符串分割成数组
+         				 this.firstName = names[0];
+         				 this.lastName = names[length - 1];
+
+         			}
+         		},
+         		total:{
+                   get:function(){
+                   	 return this.price * this.count;
+                   },
+                   set:function(newVal){
+                   	 var amount = newVal / this.price;
+                   	 this.count = amount;
+                   }
+         		},
+                sum:{
+                	get:function(){
+                      var temp = 0;
+                      this.price1.forEach(function(obj){
+                           temp += obj.p;
+                      });
+
+                      return temp;
+                },
+                set:function(){
+
+                }
+            }
+
+         	}
+         });
+	</script>
+</body>
+</html>

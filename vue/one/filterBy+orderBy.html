@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo6</title>
+  <script src= "../js/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+        <!--遍历对象 ,v-for 用于一个对象，则可以为对象的键指定一个别名-->
+           <ul id="repeat-object" class="demo">
+            <li v-for="value in object">
+              {{ $key }} : {{ value }}
+            </li>
+          </ul>
+           <div v-for="(key, val) in object">
+             {{ key }} {{ val }}
+           </div>
+           <ul>
+              <li v-for="p in preson" >
+                 {{p.name}} 
+                 {{$index}}
+              </li>
+           </ul>
+           <!--可以为索引指定一个别名（如果 v-for 用于一个对象，则可以为对象的键指定一个别名）-->
+            <div v-for="(index, p) in preson">
+               {{ index }} {{ p.name }}
+      </div>
+      <!-- 渲染一个包含多个元素的块 -->
+           <template v-for="p in preson" >
+               <p>姓名：{{p.name}}</p>
+               <p>年龄：{{p.age}}</p>
+           </template>
+
+
+           <input type="text" v-model="inputVal">
+
+           <ul>
+              <!--简单的搜索-->
+               <!-- <li v-for="t in items | filterBy inputVal">
+                    {{t.name}} --- {{t.age}}
+               </li> -->
+               <!--有条件的搜索，filters为封装条件的数组-->
+               <li v-for="t in items | filterBy inputVal in filters">
+                    {{t.name}} --- {{t.age}}---{{t.id}}
+               </li>
+           </ul>
+
+           <ul>
+           <!--简单的排序 order为排序的方式,bool位升降序，true为降序，false为声息，默认false-->
+            <li v-for="t in items | orderBy order bool">
+                   {{t.name}} --- {{t.age}}---{{t.id}}
+            </li>
+           </ul>
+           <button @click='changeBool'>升降排列</button>
+           <button @click='changeOrder'>按id排列</button>
+  </div>
+  <script>
+       var data = {
+          preson:[{name:'小明',age:18},
+           {name:'小华',age:16},
+           {name:'小黄',age:15},
+           {name:'小雨',age:19},
+           {name:'小新',age:28},
+           {name:'小城',age:20},
+           ],
+           object: {
+              FirstName: 'John',
+              LastName: 'Doe',
+              Age: 30
+            },
+           items:[{name:'泥鳅',age:1,id:'003'},
+           {name:'鸽子',age:3,id:'001'},{name:'鹌鹑',age:2,id:'002'},
+           {name:'狗',age:6,id:'006'},{name:'羊肉',age:5,id:'004'},
+           {name:'驴肉',age:4,id:'005'}],
+           filters:['age'],
+           order:'age',
+           bool:-1,//小于0的为false
+       };
+       var vm = new Vue({
+           el:'#app',
+           data:data,
+           methods:{
+              changeBool:function(){
+                 this.bool = -this.bool;
+              },
+              changeOrder:function(){
+                 this.order = 'id'
+              }
+
+           },
+       });
+
+  </script>
+</body>
+</html>

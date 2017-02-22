@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<title>Vue Router Example</title>
+    <style>
+      p>.active{
+        color: red;
+      }
+      .foo>.active{
+        color: pink;
+      }
+    .view {
+      position: absolute;
+      height: 100%;
+      min-width: 100%;
+      transition: all .5s ease;
+    }
+    .test-enter, .test-leave {
+      opacity: 0;
+      transform: translate3d(10px, 0, 0);
+    }
+    .custom-active-class{
+    	color:yellow;
+      font-size: 30px
+    }
+    </style>
+</head>
+<body>
+	<div id="app">
+     <h1>Hello App!</h1>
+      <p>
+        <!-- 使用指令 v-link 进行导航。 -->
+        <a v-link="{ path: '/foo' }">Go to Foo</a>
+        <a v-link="{ path: '/bar' }">Go to Bar</a>
+        <!-- <a v-link="{ path: '/user/' + userId }">Go to User</a>
+               --> 
+        <a v-link="{ name: 'user', params: { userId: 123 }}">User</a></p>
+      <!-- 路由外链 -->
+      <router-view transition="test" class="view" transition-model="out-in"></router-view>
+	</div>
+</body>
+    <script src="vue.js"></script>
+
+    <script src="vue-router.js"></script>
+
+    <script src="cd1604.js"></script>
+</html>

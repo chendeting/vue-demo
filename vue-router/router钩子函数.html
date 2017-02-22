@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+   <style>
+         .link{
+         	 color: green;
+         	 font-size: 50px;
+         }
+      .active{
+        color: red;
+      }
+      .foo>.active{
+        color: pink;
+      }
+    .view {
+      position: absolute;
+      height: 100%;
+      min-width: 100%;
+      transition: all .5s ease;
+    }
+    .test-enter, .test-leave {
+      opacity: 0;
+      transform: translate3d(10px, 0, 0);
+    }
+   </style>
+<body>
+	  <div id="app">
+	    <!--  activeClass是指当点击此链接时，给这个连接一个class-->
+         <a v-link="{path:'/home',activeClass: 'link' }">这是字面量路径</a>
+         <!-- 具名路经，用来传参数，动态获取路经-->
+         <a v-link="{name:'user',params:{userId:'0306'}}">这是具名路经</a>
+         <a v-link="{path:'/bar'}">这是bar路经</a>
+         <!--切换路由时给一个动画效果-->
+          <router-view transition="test" class="view" transition-model="out-in"></router-view>
+	  </div>
+	  <script src="js/vue.min.js"></script>
+
+    <script src="js/vue-router.js"></script>
+    <script>
+       var Home = Vue.extend({
+       	    template:'<div>这是Home，有活跃路径样式</div>'
+       });
+      var User = Vue.extend({
+	    template: '<p>我是用户：{{$route.params.userId}}</p>'
+	   });
+      var Bar = Vue.extend({
+      	   data:function(){
+      	   	 return {user:[]}
+
+      	   },
+      	   template:'<div>这是外部Bar组件<p>This is bar!<span v-for="a in user">{{a}}</span></p></div>',
+      	   //路由器钩子函数,所有的钩子函数都会默认传入一个参数transition 对象作为参数。
+      	   route:{
+      	   	//data钩子函数,异步的获取数据
+              data:function(transition){
+                 //一秒后加载数据，把user的数据请求过来
+                setTimeout(function(){
+                     this.user = [1,2,3,4];
+                     //transition.next();
+                    //transition.abort() //不让你切换
+                   }.bind(this),2000)
+              },
+              //active钩子函数，即正在实行的钩子函数
+              activate:function(transition){
+		            var auth = this.$route.auth;
+		            if (auth) {
+		              // 往后面发请求，验证是否登陆
+		                setTimeout(function(){
+		                    if (Math.random()>=0.5) {
+		                       console.log("验证通过");
+		                       transition.next();//执行下一步操作
+		                    }else{
+		                       console.error("验证失败,请重新登陆");
+		                        //页面跳转
+		                       transition.abort();//禁止跳转到本页面
+		                    }; 
+		                },1000)
+		            };
+		       },
+      	   }
+
+      });
+
+       var App = Vue.extend({});  
+
+       var router = new VueRouter();
+
+       router.map({
+	     
+	    '/home': {
+	      component: Home
+	    },
+	    //实现惰性加载组件。不再是之前所述的直接引用一个组件，现在需要像下面这样通过定义一个函数返回一个组件：
+	    '/bar':{
+	    	 component:function(resolve){
+	    	 // require(['./MyComponent.vue'], resolve)//webpack使用只有当 /async 需要被渲染时，MyComponent.vue组件，会自动加载它的依赖组件，并且异步的加载进来。
+	    	 //本页面加载组件
+                resolve(Bar);
+	    	 },
+	    	 auth:true  //自定义的属性，加上这个标示，标示这个要进行验证的
+	    },
+	    //动态加载这个路经，userId为变量
+	    '/user/:userId':{
+	        name: 'user',
+	        component: User
+	    }
+	})
+    
+      router.start(App,"#app");
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+  <style>
+    .class-a{
+      font-size: 30px;
+    }
+    .class-b{
+      color: red
+    }
+   .box{
+     height: 100px;
+     width: 100px;
+     border: 1px solid #ccc;
+     transition:all 0.3s ease-in;
+   }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+      <template v-for="item in items"> 
+      <p>商品类型{{item.message}}</p>
+      <p>商品名称{{$index}}</p>
+      </template >
+      <input type="text" v-model="inputVal">
+      <ul>
+       <!--  <li v-for="item in items | filterBy inputVal">
+         {{item.message}}
+       </li> -->
+   <!--      <li v-for="item in items | filterBy inputVal in fields">
+    {{item.message}}--{{item.id}}
+   </li>  -->
+          <li v-for="item in items | orderBy order bool">
+         {{item.message}}--{{item.id}}--{{item.age}}
+        </li> 
+      </ul>
+      <button @click="changeBoll">BOOL</button>
+      <button @click="changeOrder">Order</button>
+</div>
+
+</body>
+<script>
+var data = {
+   a:1,
+   inputVal:"",
+   order:'age',
+   bool:-1,
+   fields:['id','message'],//是数组
+   items:[{ message: 'Foo',id:'001',age:99},
+      { message: 'Bar' ,id:'002',age:100},{
+        message:'Young',id:'003',age:101
+      },{message:'niu',id:'0018',age:79}],
+      object: {
+      FirstName: 'John',
+      LastName: 'Doe',
+      Age: 30
+    },
+     arr:[2,43,4],
+   ok:true}
+
+var vm = new Vue({
+   el:'#app',
+   data:data,
+   methods:{
+    changeBoll:function(){
+      this.bool = -(this.bool);
+    },
+    changeOrder:function(){
+       this.order = 'message'
+    }
+   }
+});
+
+</script>
+</html>

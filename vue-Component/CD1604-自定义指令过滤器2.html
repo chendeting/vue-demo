@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue.min.js"></script>
+  <style>
+    .fade-transition {
+      transition: opacity .3s ease;
+    }
+    .fade-enter, .fade-leave {
+      opacity: 0;
+    }
+    .red{
+      font-size: 20px;
+      color: red
+    }
+    .blue{
+      color:blue;
+    }
+  </style>
+</head>
+<body>
+	<div id="app">
+		   <div v-color="color">我是自定义指令</div>
+       <!-- 传对象 -->
+      <!--  <div v-color="{ color: 'white', text: 'hello!' }">我是自定义指令</div> -->
+      {{a | pre country "台湾"}}
+
+      <my-com></my-com>
+      <my-com1></my-com1>
+	</div>
+</body>
+<script>
+
+    Vue.directive('color',{
+        deep: true,
+        bind:function() {
+            
+        },
+        update:function(val){
+            if (val) {
+               this.el.className = val.klass; 
+            };
+        },
+        unbind:function(){
+
+        }
+
+    });
+    
+    //自定过滤器
+
+    Vue.filter('pre',function(val,prama1,prama2){//
+         return prama1 + val + prama2 
+    })
+
+
+    var myMixin = {
+         created:function(){
+            console.log(11);
+        }
+    }
+
+    Vue.component('my-com',{
+       mixins:[myMixin]
+    });
+
+    Vue.component('my-com1',{
+        mixins:[myMixin]
+    });
+
+    var vm = new Vue({
+       el:'#app',
+       data:{
+         a:'大陆是',
+         country:'中国',
+         color:{klass:'red'},
+         todos:["S",'M',"L","XL","XXL"]
+       }
+
+    })
+</script>
+</html>
